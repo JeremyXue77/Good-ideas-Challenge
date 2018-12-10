@@ -10,7 +10,6 @@ enum ProductSize: Int {
 
 class Store {
     var orders = [Product]()
-    var priceList = [Int]()
     func getOrders(orders: [Int]) {
         orders.forEach { (amount) in
             let product = Product(amount: amount)
