@@ -55,7 +55,7 @@ struct Book {
 
 接著定義一個 `protocol` 並且 `extension ` `JBookDelegate` 中的 `expoertBooks()`，讓我們定義時做的方法：
 
-```
+```swift
 protocol JBooksDelegate {
     var books: [Book] {get}
     func exportBooks() -> [Book]
