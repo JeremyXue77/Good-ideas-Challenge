@@ -156,3 +156,12 @@ class JeremyLibrary {
 }
 ```
 
+### 運行：
+
+```swift
+// 測試
+let library = JeremyLibrary()
+library.getLibraryBooks(from: [swiftBooks, kotlinBooks, phpBooks])
+library.searchBooks(category: .swift, keyword: nil)
+```
+
