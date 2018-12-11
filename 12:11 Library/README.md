@@ -165,3 +165,31 @@ library.getLibraryBooks(from: [swiftBooks, kotlinBooks, phpBooks])
 library.searchBooks(category: .swift, keyword: nil)
 ```
 
+
+
+---
+
+### 實作
+
+## Stage - 3
+
+```swift
+func getLibraryBooks(from getBooks: [Any]) {
+        var libraryBooks = [Book]()
+        getBooks.forEach { (books) in
+            // 透過 Optional Binding 判斷類型為 JerermyBaseBooks 或是 [ZBooksDelegate]
+            // 並執行不同方法
+            if let books = books as? JerermyBaseBooks {
+                libraryBooks += books.exportBooks()
+            } else if let books = books as? [ZBooksDelegate] {
+                // 透過 forEach 將其實例化成 Book
+                books.forEach({ (book) in
+                    let book = Book(name: book.ShowMeYourName(), category: BookTypes(rawValue: book.ShowMeYourCategory())!)
+                    libraryBooks.append(book)
+                })
+            }
+        }
+        self.books = libraryBooks
+    }
+```
+
