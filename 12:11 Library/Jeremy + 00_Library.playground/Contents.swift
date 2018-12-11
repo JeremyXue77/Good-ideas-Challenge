@@ -92,7 +92,7 @@ class JeremySwiftBooks:JerermyBaseBooks {
 }
 
 class JeremyKotlinBooks:JerermyBaseBooks {
-    
+
 }
 
 class JeremyPhpBooks:JerermyBaseBooks {
@@ -160,6 +160,8 @@ let phpBooks = JeremyPhpBooks(type: .php, amounts: 4)
 var zswiftBooks = [Swift]()
 var zkotlinBooks = [Kotlin]()
 var zphpBooks = [Php]()
+
+kotlinBooks.exportBooks()
 
 for i in 1...4 {
     let book = Swift(name: "swift" + "\(i)", category: "swift", isbn: i)

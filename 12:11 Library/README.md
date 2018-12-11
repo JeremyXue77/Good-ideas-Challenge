@@ -22,6 +22,16 @@
 - 建立一個圖書館，例如 `DonLibrary`
 - 只為你的圖書館提供一個方法，調用這可以選擇要用 `category` 或者 `name` 來進行搜尋。
 
+#### Stage - 3 出爐
+
+- 將你三個 Datasource 以及關聯的內容傳給你左右兩位挑戰者。
+- 最後一樣提供一個 searchTool 可以同時 search 3 + 3 + 3 個 Datasource.
+- 不要去罵你的隊友 :crying:
+
+規則：
+- `禁止改動拿到的兩個 Datasource, 任何 code 都不能改`
+- `禁止為了方便別人串接去修改你的 code` 
+
 ### 規則：
 
 - 建立 `class`, 命名規則為：自己的英文名稱 +` class 名稱`，例如 `class DonLibrary`
@@ -172,6 +182,8 @@ library.searchBooks(category: .swift, keyword: nil)
 ### 實作
 
 ## Stage - 3
+
+> 過程中不能修改其它的人 Code。需要
 
 ```swift
 func getLibraryBooks(from getBooks: [Any]) {
