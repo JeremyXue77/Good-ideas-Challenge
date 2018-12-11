@@ -1,15 +1,9 @@
 import UIKit
 
-// Modal
 enum BookTypes: String {
     case swift = "swift"
     case kotlin = "kotlin"
     case php = "php"
-}
-
-enum SearchType {
-    case name
-    case category
 }
 
 struct Book {
@@ -28,7 +22,6 @@ extension JBooksDelegate {
     }
 }
 
-// Books
 class JerermyBaseBooks: JBooksDelegate {
     var books = [Book]()
     var booksDelegate: JBooksDelegate?
