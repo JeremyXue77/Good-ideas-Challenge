@@ -24,7 +24,6 @@ extension JBooksDelegate {
 
 class JerermyBaseBooks: JBooksDelegate {
     var books = [Book]()
-    var booksDelegate: JBooksDelegate?
     init(type: BookTypes, amounts: Int) {
         for number in 1...amounts {
             let book = Book(name: "\(type.rawValue) Book (\(number))", category: type)
@@ -45,7 +44,6 @@ class JeremyPhpBooks:JerermyBaseBooks {
     
 }
 
-// Jeremy's Library
 class JeremyLibrary {
     var books = [Book]()
     var bookString = [String]()
@@ -56,7 +54,6 @@ class JeremyLibrary {
             libraryBooks += books.exportBooks()
         }
         self.books = libraryBooks
-        print("獲取 \(libraryBooks.count) 本書籍")
     }
     
     func searchBooks(category: BookTypes?, keyword:String?) {
