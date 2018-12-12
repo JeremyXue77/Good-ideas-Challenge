@@ -9,6 +9,7 @@ protocol Subscription {
 }
 
 extension Subscription {
+    
     var barkerySubscriptionName: Notification.Name {
         return Notification.Name("barkerySubscription")
     }
@@ -28,45 +29,40 @@ extension Subscription {
     
     func received(notification: Notification) {
         if let message = notification.userInfo?[userInfoKey] as? String {
-            print("Hospital received: \(message)")
+            print("Received: \(message)")
         }
     }
 }
 
-class JeremyHospital:Subscription {
-
-}
-
-class JeremyFireStation: Subscription {
-
-}
-
-class JeremySchool: Subscription {
-
-}
-
-class DonStudio: Subscription {
-    
-}
+class JeremyHospital:Subscription {}
+class JeremyFireStation: Subscription {}
+class JeremySchool: Subscription {}
+class DonStudio: Subscription {}
 
 class JeremyBakery {
-    private var barkerySubscriptionName = Notification.Name("barkerySubscription")
-    private var userInfoKey = "message"
-    
+    var barkerySubscriptionName: Notification.Name {
+        return Notification.Name("barkerySubscription")
+    }
+    var userInfoKey: String {
+        return "message"
+    }
     func sendTodaySpecial(item: String) {
-        NotificationCenter.default.post(name: barkerySubscriptionName, object: nil, userInfo: ["Message": item])
+        NotificationCenter.default.post(name: barkerySubscriptionName, object: nil, userInfo: [userInfoKey: item])
         print("Bakery post message：\(item)")
     }
 }
 
+// MARK: Test
 let hospital = JeremyHospital()
-hospital.addObserver()
-
-let school = JeremySchool()
-school.addObserver()
-
 let fireStation = JeremyFireStation()
+let school = JeremySchool()
+let stuido = DonStudio()
+
+// Add Observer
+hospital.addObserver()
 fireStation.addObserver()
+school.addObserver()
+stuido.addObserver()
 
 let barkery = JeremyBakery()
 barkery.sendTodaySpecial(item: "Banana")
