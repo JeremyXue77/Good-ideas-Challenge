@@ -1,77 +1,60 @@
 import UIKit
 
 protocol Subscription {
-    var barkerySubscription: Notification.Name {get}
+    var barkerySubscriptionName: Notification.Name {get}
     var userInfoKey: String {get}
     func addObserver()
     func removeObserver()
-//    func cancelObserver()
-//    func received(notification: Notification)
+    func received(notification: Notification)
 }
 
 extension Subscription {
-    var barkerySubscription: Notification.Name {
+    var barkerySubscriptionName: Notification.Name {
         return Notification.Name("barkerySubscription")
     }
     var userInfoKey: String {
-        return "Message"
+        return "message"
+    }
+
+    func addObserver() {
+        NotificationCenter.default.addObserver(forName: barkerySubscriptionName, object: nil, queue: nil) { (notification) in
+            self.received(notification: notification)
+        }
     }
     
     func removeObserver() {
-        NotificationCenter.default.removeObserver(self, name: barkerySubscription, object: nil)
-    }
-}
-
-class JeremyHospital:Subscription {
-    
-    func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(recived(notification:)), name: barkerySubscription, object: nil)
+        NotificationCenter.default.removeObserver(self, name: barkerySubscriptionName, object: nil)
     }
     
-    @objc func recived(notification: Notification) {
+    func received(notification: Notification) {
         if let message = notification.userInfo?[userInfoKey] as? String {
             print("Hospital received: \(message)")
         }
     }
 }
 
+class JeremyHospital:Subscription {
+
+}
+
 class JeremyFireStation: Subscription {
-    func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(recived(notification:)), name: barkerySubscription, object: nil)
-    }
-    
-    @objc func recived(notification: Notification) {
-        if let message = notification.userInfo?[userInfoKey] as? String {
-            print("FireStation received: \(message)")
-        }
-    }
+
 }
 
 class JeremySchool: Subscription {
-    func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(recived(notification:)), name: barkerySubscription, object: nil)
-    }
-    
-    @objc func recived(notification: Notification) {
-        if let message = notification.userInfo?[userInfoKey] as? String {
-            print("School received: \(message)")
-        }
-    }
+
 }
 
-//
+class DonStudio: Subscription {
+    
+}
 
 class JeremyBakery {
-    private var barkerySubscription: Notification.Name {
-        return Notification.Name("barkerySubscription")
-    }
-    
-    private var userInfoKey: String {
-        return "Message"
-    }
+    private var barkerySubscriptionName = Notification.Name("barkerySubscription")
+    private var userInfoKey = "message"
     
     func sendTodaySpecial(item: String) {
-        NotificationCenter.default.post(name: barkerySubscription, object: nil, userInfo: ["Message": item])
+        NotificationCenter.default.post(name: barkerySubscriptionName, object: nil, userInfo: ["Message": item])
         print("Bakery post message：\(item)")
     }
 }
